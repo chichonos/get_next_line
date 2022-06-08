@@ -95,7 +95,7 @@ void *ft_calloc(size_t count, size_t size)
 
 char *get_next_line(int fd)
 {
-	static char buffer[4096 + 1];
+	static char buffer[1000000 + 1];
 	static int 	i;
 	char 		*line;
 	char		*ret;
@@ -104,7 +104,7 @@ char *get_next_line(int fd)
 
 	if (!*buffer)
 	{
-		read_size = read(fd, buffer, 4096);
+		read_size = read(fd, buffer, 1000000);
 		if (read_size <= 0)
 			return (NULL);
 		buffer[read_size] = 0;
@@ -119,7 +119,7 @@ char *get_next_line(int fd)
 		ret = line;
 		if (buffer[i - 1] == '\n')
 			break;
-		read_size = read(fd, buffer, 4096);
+		read_size = read(fd, buffer, 1000000);
 		buffer[read_size] = 0;
 		i = 0;
 	}
